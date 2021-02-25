@@ -35,10 +35,18 @@ JOIN Invoice i
     ON i.CustomerId = c.CustomerId
 ORDER BY InvoiceId ASC;
 
+--7
+SELECT Total, c.FirstName AS C_FirstName, c.LastName AS C_LastName, c.Country, InvoiceId, e.FirstName AS E_FirstName, e.LastName AS E_LastName
+FROM Invoice i
+JOIN Customer c 
+    ON c.CustomerId = i.CustomerId
+JOIN Employee e  
+    ON e.EmployeeId = c.SupportRepId
 
---6?
-SELECT FirstName, LastName, InvoiceId 
-FROM Employee
-  JOIN Customer
-    ON EmployeeId = SupportRepId;
+--8
+SELECT COUNT(InvoiceDate) from Invoice 
+WHERE InvoiceDate LIKE '2009%' OR InvoiceDate LIKE '2011%';
+
+--9
+
 
