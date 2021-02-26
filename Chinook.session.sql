@@ -48,5 +48,42 @@ SELECT COUNT(InvoiceDate) from Invoice
 WHERE InvoiceDate LIKE '2009%' OR InvoiceDate LIKE '2011%';
 
 --9
+SELECT SUM(total),
+    strftime("%Y", InvoiceDate) as year
+FROM Invoice
+WHERE year == "2009" OR year == "2011"
+GROUP BY year;
 
+--10
+SELECT COUNT(InvoiceId) 
+FROM InvoiceLine
+WHERE InvoiceId = 37
 
+--11
+SELECT  InvoiceId, COUNT(InvoiceId) AS NumOfLineItems
+FROM InvoiceLine
+GROUP BY InvoiceId
+
+--12
+SELECT Name, InvoiceId, InvoiceLineId
+FROM Track t
+JOIN InvoiceLine i 
+    ON t.TrackId = i.TrackId
+
+--13
+SELECT Name, Composer, InvoiceId
+FROM Track t
+JOIN InvoiceLine i 
+    ON t.TrackId = i.TrackId
+
+--14
+SELECT BillingCountry, COUNT(InvoiceId) AS NumberOfInvoices
+FROM Invoice
+GROUP BY BillingCountry
+
+--15
+SELECT COUNT(TrackId), PlaylistId
+FROM PlaylistTrack  
+GROUP BY PlaylistId
+
+--16
