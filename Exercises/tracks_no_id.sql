@@ -3,8 +3,13 @@
 -- The result should include the Album name, Media type and Genre.
 
 
-SELECT t.Name AS TrackName, m.Name AS MediaTypeName , g.Name AS GenreName, Title
-FROM Track t, Album, MediaType m, Genre g
+SELECT
+a.Title AS Album, t.Name AS Track, g.Name AS Genre, m.Name AS MediaType
+FROM Track t
+JOIN MediaType m on t.MediaTypeId = m.MediaTypeId
+JOIN Genre g on t.GenreId = g.GenreId
+JOIN Album a on t.AlbumId = a.AlbumId
+ORDER BY Album;
 
 
 
